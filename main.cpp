@@ -11,10 +11,16 @@ int main()
   Texture2D map = LoadTexture("nature_tileset/OpenWorldMap24x24.png");
   Vector2 mapPos{0.0, 0.0};
 
-  Texture2D knight = LoadTexture("characters/knight_idle_spritesheet.png");
+  
+  Texture2D knight_idle = LoadTexture("characters/knight_idle_spritesheet.png");
+  Texture2D knight_run = LoadTexture("characters/knight_run_spritesheet.png");
+
+
+  float rightLeft{1.f};
+
   Vector2 knightPos{
-    width/2-(4*0.5*knight.width/6.0),
-    height/2-(4*0.5*knight.height)
+    (width/2.0)-(4*0.5*knight_idle.width/6.0),
+    (height/2.0)-(4*0.5*knight_idle.height)
   };
 
   SetTargetFPS(60);
@@ -35,13 +41,15 @@ int main()
           mapPos = Vector2Subtract(mapPos,Vector2Scale(Vector2Normalize(direction),speed)); 
         }
 
+        
+
         DrawTextureEx(map, mapPos, 0.0, 4.0, WHITE);
 
-        Rectangle source{0.f, 0.f, (float)knight.width/6.f, (float)knight.height};
-        Rectangle dest{knightPos.x, knightPos.y, 4.0f * (float)knight.width/6.0f, 4.0f * (float)knight.height};
+        Rectangle source{0.f, 0.f, (float)knight_idle.width/6.f, (float)knight_idle.height};
+        Rectangle dest{knightPos.x, knightPos.y, 4.0f * (float)knight_idle.width/6.0f, 4.0f * (float)knight_idle.height};
 
         
-        DrawTexturePro(knight, source, dest, Vector2{}, 0.f, WHITE);
+        DrawTexturePro(knight_idle, source, dest, Vector2{}, 0.f, WHITE);
 
         EndDrawing();
     }
