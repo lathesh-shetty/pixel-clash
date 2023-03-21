@@ -20,6 +20,7 @@ class character
   int frame{};
   const int maxFrames{6};
   const float updateTime{1.f/12.f};
+  const float{1.f};
 
 };
 
